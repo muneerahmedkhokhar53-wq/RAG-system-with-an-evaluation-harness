@@ -1,0 +1,43 @@
+# Default configuration: fully offline (no downloads, no API keys).
+# For real-world quality switch embedding.provider to sentence_transformers and
+# generation.provider to anthropic / openai (see README "Upgrading components").
+ingest:
+  storage_dir: storage
+  max_file_mb: 20
+
+chunking:
+  chunk_size: 160     # words
+  overlap: 30
+  min_chunk_words: 12
+
+embedding:
+  provider: hashing   # hashing | sentence_transformers | openai
+  model: BAAI/bge-small-en-v1.5
+  dim: 1024
+
+retrieval:
+  mode: hybrid        # bm25 | dense | hybrid
+  top_k: 4
+  candidate_k: 20
+  rerank: true
+  reranker: lexical   # lexical | cross_encoder
+
+generation:
+  provider: extractive   # extractive | anthropic | openai (openai also covers Ollama/vLLM via base_url)
+  model: claude-sonnet-5-5
+  temperature: 0.0
+  min_coverage: 0.45     # evidence gate: lower = fewer refusals, more risk. Tune with `ragkit eval`
+  min_support: 0.6
+  on_unsupported: abstain  # abstain | flag
+
+eval:
+  dataset: data/eval/qa_dataset.jsonl
+  output_dir: results
+  use_llm_judge: false
+  thresholds:            # `ragkit eval` exits non-zero when violated (CI gate)
+    hit_rate: 0.90
+    mrr: 0.70
+    accuracy: 0.70
+    abstention_accuracy: 0.70
+    faithfulness: 0.90
+    latency_p95_ms: 2000

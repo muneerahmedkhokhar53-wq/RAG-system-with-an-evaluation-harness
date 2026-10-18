@@ -1,0 +1,10 @@
+# Core (everything below runs fully offline with the default config)
+numpy>=1.26
+PyYAML>=6.0
+# UI + API
+streamlit>=1.40
+fastapi>=0.110
+uvicorn>=0.29
+python-multipart>=0.0.9
+# Documents
+pypdf>=4.0

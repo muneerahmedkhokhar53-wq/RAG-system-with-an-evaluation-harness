@@ -1,0 +1,5 @@
+# Install only what you need (see README "Upgrading components")
+sentence-transformers>=3.0   # neural embeddings + cross-encoder reranker (downloads models from Hugging Face)
+anthropic>=0.40              # Claude as generator / judge  (needs ANTHROPIC_API_KEY)
+openai>=1.40                 # OpenAI or any OpenAI-compatible server: Ollama, vLLM, LM Studio
+python-docx>=1.1             # .docx ingestion
