@@ -1,6 +1,6 @@
 # ragkit
 
-[![CI](https://github.com/YOUR_USERNAME/ragkit/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/ragkit/actions/workflows/ci.yml)
+[![CI](https://github.com/muneerahmedkhokhar53-wq/RAG-system-with-an-evaluation-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/muneerahmedkhokhar53-wq/RAG-system-with-an-evaluation-harness/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -21,7 +21,7 @@
 Requires Python 3.10+.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ragkit.git && cd ragkit
+git clone https://github.com/muneerahmedkhokhar53-wq/RAG-system-with-an-evaluation-harness.git && cd ragkit
 python -m venv .venv
 source .venv/bin/activate            # Windows PowerShell: .venv\Scripts\Activate.ps1
 python -m pip install -e ".[all,dev]"
@@ -110,6 +110,8 @@ The offline defaults are a deterministic baseline: the hashing embedder matches 
 Hosted alternative: `generation: {provider: anthropic, model: claude-sonnet-5-5}` with `ANTHROPIC_API_KEY` set. **Re-tune `generation.min_coverage` after switching models** (see below). These back-ends are implemented but not exercised by the test suite, because they need downloads or keys.
 
 ## Evaluation
+
+The benchmark figures below describe the bundled offline dataset and configuration only; they are not a guarantee of performance on other corpora or models. Re-run the evaluation after changing the corpus, model, retrieval settings, or thresholds.
 
 `python -m ragkit eval [--ablate] [--dataset file.jsonl]` writes `results/<timestamp>/` containing `report.html`, `report.md`, `summary.json` (config, dataset hash, versions, seed) and `per_question.jsonl`. It exits non-zero when a threshold in `eval.thresholds` is violated, which is what the CI workflow uses.
 
